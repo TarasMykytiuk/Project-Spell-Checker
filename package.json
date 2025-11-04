@@ -1,0 +1,12 @@
+{
+  "name": "project-spell-checker",
+  "version": "1.0.0",
+  "description": "When writing text, it is helpful to have a tool to check that you are spelling correctly. Most computers even have it built in to the operating system.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

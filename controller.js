@@ -4,8 +4,14 @@ export default class Controller {
         this.model = model;
     }
 
-    async init() {
-        console.log("View: " + typeof (this.view) + ", Model: " + typeof (this.model));
-        console.log(await this.model.getDictionarySize());
+    init() {
+        this.view.elements.submitBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            this.handleFormSubmit();
+        });
+    }
+
+    handleFormSubmit() {
+        console.log("Form submit triggered!");
     }
 }

@@ -1,0 +1,21 @@
+section {
+    width: 60%;
+    margin: 20px auto;
+}
+
+#text_form {
+    display: flex;
+    flex-direction: column;
+}
+
+#text_form label,
+#text_form input,
+#text_form button {
+    margin: 5px 0;
+}
+
+#text_form button {
+    padding: 5px;
+    width: max-content;
+    align-self: center;
+}

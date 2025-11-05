@@ -4,12 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="style.css" rel="stylesheet" />
+    <title>Project-Spell-Checker</title>
 </head>
 
 <body>
     <main>
-
+        <section>
+            <form id="text_form">
+                <label for="textarea">Type your text here: </label>
+                <textarea id="textarea" name="input_text"></textarea>
+                <button id="form_submit" type="button">Check spelling</button>
+            </form>
+        </section>
     </main>
 </body>
 <script src="app.js" type="module"></script>

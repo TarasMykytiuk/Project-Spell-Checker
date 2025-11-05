@@ -1,12 +1,16 @@
 export default class Model {
     constructor() {
-
+        this.words = []
     }
 
     async loadWords() {
         const response = await fetch('./words.json');
         const words = await response.json();
-        return words;
+        this.words = words;
+    }
+
+    checkWord(word) {
+        return this.words.includes(word);
     }
 
     async getDictionarySize() {

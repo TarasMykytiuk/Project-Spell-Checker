@@ -5,13 +5,12 @@ export default class Controller {
     }
 
     init() {
-        this.view.elements.submitBtn.addEventListener("click", (event) => {
-            event.preventDefault();
-            this.handleFormSubmit();
-        });
+        this.view.bindFormSubmit(() => this.handleFormSubmit());
     }
 
     handleFormSubmit() {
-        console.log("Form submit triggered!");
+        const text = this.view.elements.textArea.value;
+        const words = text.split(" ");
+        console.log(words);
     }
 }

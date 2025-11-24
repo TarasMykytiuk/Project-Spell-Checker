@@ -11,6 +11,12 @@ export default class Controller {
     handleFormSubmit() {
         const text = this.view.elements.textArea.value;
         const words = text.split(" ");
-        console.log(words);
+        const wrongWords = this.model.getWrongWords(words);
+        const highlightedText = this.model.getMarkedText(words)
+        this.view.highlightWords(highlightedText);
+        this.view.displayErrors(wrongWords);
+
+        ///////////
+        console.log(wrongWords);
     }
 }

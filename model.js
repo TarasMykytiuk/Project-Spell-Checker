@@ -1,20 +1,45 @@
 export default class Model {
     constructor() {
-        this.words = []
+        this.dictionary = [];
+        this.loadDictionary();
+        this.punctuation = '.,?!":;)';
     }
 
-    async loadWords() {
+    async loadDictionary() {
         const response = await fetch('./words.json');
         const words = await response.json();
-        this.words = words;
+        this.dictionary = words;
+    }
+
+    getMarkedText(words) {
+        return this.markWrongWords(words, this.getWrongWords(words));
+    }
+
+    removePunctuation(word) {
+        const regex = new RegExp(`^[${this.punctuation}]+|[${this.punctuation}]+$`, 'g');
+        return word.replace(regex, '');
     }
 
     checkWord(word) {
-        return this.words.includes(word);
+        let parts = word.split("-");
+        for (const part of parts) {
+            if (!this.dictionary.includes(this.removePunctuation(part))) { return false };
+        }
+        return true;
     }
 
-    async getDictionarySize() {
-        const words = await this.loadWords();
-        return words.length;
+    getWrongWords(words) {
+        return words.filter(word => !this.checkWord(word));
+    }
+
+    markWrongWords(words, wrongWords) {
+        let text = "";
+        words.forEach(word => {
+            if (wrongWords.includes(word)) {
+                word = `<mark>${word}</mark>`;
+            }
+            text += word + " ";
+        });
+        return text;
     }
 }

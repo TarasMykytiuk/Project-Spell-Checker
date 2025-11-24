@@ -12,9 +12,17 @@
     <main>
         <section>
             <form id="text_form">
-                <label for="textarea">Type your text here: </label>
-                <textarea id="textarea" name="textarea"></textarea>
                 <button id="form_submit" type="button">Check spelling</button>
+                <label for="textarea">Type your text here: </label>
+                <div id="container">
+                    <div id="backdrop">
+                        <div id="highlights"></div>
+                    </div>
+                    <textarea id="textarea" name="textarea"></textarea>
+                </div>
+                <h3>This words are not in dictionary:</h3>
+                <div id="spelling_mistakes">
+                </div>
             </form>
         </section>
     </main>

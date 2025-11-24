@@ -3,6 +3,8 @@ export default class View {
         this.elements = {
             textForm: document.getElementById("text_form"),
             textArea: document.getElementById("textarea"),
+            highlights: document.getElementById("highlights"),
+            spellMistakes: document.getElementById("spelling_mistakes"),
             submitBtn: document.getElementById("form_submit")
         }
     }
@@ -12,5 +14,13 @@ export default class View {
             event.preventDefault();
             handler();
         });
+    }
+
+    highlightWords(highlightedText) {
+        this.elements.highlights.innerHTML = highlightedText;
+    }
+
+    displayErrors(highlightedText) {
+        this.elements.spellMistakes.innerHTML = highlightedText;
     }
 }

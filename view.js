@@ -1,6 +1,7 @@
 export default class View {
+    #elements;
     constructor() {
-        this.elements = {
+        this.#elements = {
             textForm: document.getElementById("text_form"),
             textArea: document.getElementById("textarea"),
             highlights: document.getElementById("highlights"),
@@ -10,17 +11,21 @@ export default class View {
     }
 
     bindFormSubmit(handler) {
-        this.elements.submitBtn.addEventListener("click", (event) => {
+        this.#elements.submitBtn.addEventListener("click", (event) => {
             event.preventDefault();
             handler();
         });
     }
 
-    highlightWords(highlightedText) {
-        this.elements.highlights.innerHTML = highlightedText;
+    readTextArea() {
+        return this.#elements.textArea.value;
     }
 
-    displayErrors(highlightedText) {
-        this.elements.spellMistakes.innerHTML = highlightedText;
+    highlightWords(highlightedText) {
+        this.#elements.highlights.innerHTML = highlightedText;
+    }
+
+    displayErrors(wrongWords) {
+        this.#elements.spellMistakes.innerHTML = wrongWords.join(" ");
     }
 }

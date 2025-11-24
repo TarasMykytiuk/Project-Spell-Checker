@@ -1,14 +1,16 @@
 export default class Model {
+    #dictionary;
+    #punctuation;
     constructor() {
-        this.dictionary = [];
+        this.#dictionary = [];
         this.loadDictionary();
-        this.punctuation = '.,?!":;)';
+        this.#punctuation = '.,?!":;)';
     }
 
     async loadDictionary() {
         const response = await fetch('./words.json');
         const words = await response.json();
-        this.dictionary = words;
+        this.#dictionary = words;
     }
 
     getMarkedText(words) {
@@ -16,14 +18,14 @@ export default class Model {
     }
 
     removePunctuation(word) {
-        const regex = new RegExp(`^[${this.punctuation}]+|[${this.punctuation}]+$`, 'g');
+        const regex = new RegExp(`^[${this.#punctuation}]+|[${this.#punctuation}]+$`, 'g');
         return word.replace(regex, '');
     }
 
     checkWord(word) {
         let parts = word.split("-");
         for (const part of parts) {
-            if (!this.dictionary.includes(this.removePunctuation(part))) { return false };
+            if (!this.#dictionary.includes(this.removePunctuation(part))) { return false };
         }
         return true;
     }

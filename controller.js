@@ -5,18 +5,23 @@ export default class Controller {
     }
 
     init() {
-        this.view.bindFormSubmit(() => this.handleFormSubmit());
+        this.view.bindTextSubmit(() => this.handleTextSubmit());
+        this.view.textAreaChange();
+        this.view.bindAddToDictSubmit(() => this.handleAddToDictSubmit());
     }
 
-    handleFormSubmit() {
+    handleTextSubmit() {
         const text = this.view.readTextArea();
         const words = text.split(" ");
         const wrongWords = this.model.getWrongWords(words);
-        const highlightedText = this.model.getMarkedText(words)
+        const highlightedText = this.model.getMarkedText(words);
         this.view.highlightWords(highlightedText);
-        this.view.displayErrors(wrongWords);
+        this.view.displayResult(wrongWords);
+    }
 
-        ///////////
-        console.log(wrongWords);
+    handleAddToDictSubmit() {
+        const text = this.view.readAddDict();
+        const words = text.split(" ");
+        this.model.addToDict(words);
     }
 }

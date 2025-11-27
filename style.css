@@ -11,18 +11,20 @@ section {
 }
 
 #text_form label,
+#add_to_dict_form label,
 #text_form input,
-#text_form button {
+button {
     margin: 5px 0;
 }
 
-#text_form button {
+button {
     padding: 5px;
     width: max-content;
     align-self: center;
 }
 
-label {
+label,
+#add_to_dict {
     align-self: center;
 }
 
@@ -31,7 +33,7 @@ label {
 #highlights,
 textarea {
     width: 460px;
-    height: 180px;
+    height: 90px;
 }
 
 #container {
@@ -39,9 +41,9 @@ textarea {
     margin: 0 auto;
 }
 
-textarea {
+#text_input,
+#add_to_dict {
     padding: 0;
-    position: absolute;
     margin: 0;
     border-radius: 0;
     color: #444;
@@ -49,6 +51,10 @@ textarea {
     border: 1px solid black;
     resize: none;
     font: 18px 'Opens Sans', sans-serif;
+}
+
+#text_input {
+    position: absolute;
 }
 
 #backdrop {
@@ -70,4 +76,16 @@ mark {
 
 #spelling_mistakes mark {
     color: unset;
+}
+
+#result_message {
+    border-radius: 15px;
+    visibility: hidden;
+    margin: 15px;
+    padding: 15px;
+}
+
+#add_to_dict_form {
+    display: flex;
+    flex-direction: column;
 }

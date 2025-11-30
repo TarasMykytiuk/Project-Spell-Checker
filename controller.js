@@ -14,7 +14,7 @@ export default class Controller {
         const text = this.view.readTextArea();
         const words = text.split(" ");
         const wrongWords = this.model.getWrongWords(words);
-        const highlightedText = this.model.getMarkedText(words);
+        const highlightedText = this.model.markWrongWords(words, wrongWords);
         this.view.highlightWords(highlightedText);
         this.view.displayResult(wrongWords);
     }

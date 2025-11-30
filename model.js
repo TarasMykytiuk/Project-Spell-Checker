@@ -15,8 +15,8 @@ export default class Model {
         this.#dictionary = words;
     }
 
-    getMarkedText(words) {
-        return this.markWrongWords(words, this.getWrongWords(words));
+    addToDict(words) {
+        words.forEach(word => { this.#dictionary.push(word); });
     }
 
     removePunctuation(word) {
@@ -46,9 +46,5 @@ export default class Model {
             text += word + " ";
         });
         return text;
-    }
-
-    async addToDict(words) {
-        words.forEach(word => { this.#dictionary.push(word); });
     }
 }

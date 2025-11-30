@@ -6,13 +6,14 @@ export default class View {
             textInput: document.getElementById("text_input"),
             highlights: document.getElementById("highlights"),
             spellMistakes: document.getElementById("spelling_mistakes"),
-            submitBtn: document.getElementById("form_submit"),
+            submitBtn: document.getElementById("text_form_submit"),
             wrongWordsDom: document.getElementById("wrong_words"),
             noErrorsDom: document.getElementById("no_mistakes"),
             resultMessage: document.getElementById("result_message"),
             resultHeader: document.getElementById("result_header"),
             addToDictForm: document.getElementById("add_to_dict_form"),
-            addToDictInput: document.getElementById("add_to_dict")
+            addToDictInput: document.getElementById("add_to_dict"),
+            addToDictBtn: document.getElementById("dict_form_submit")
         }
     }
 
@@ -33,7 +34,7 @@ export default class View {
     }
 
     bindAddToDictSubmit(handler) {
-        this.#elements.addToDictForm.addEventListener("click", (event) => {
+        this.#elements.addToDictBtn.addEventListener("click", (event) => {
             event.preventDefault();
             handler();
         });

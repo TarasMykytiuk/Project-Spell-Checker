@@ -25,10 +25,11 @@ export default class Model {
     }
 
     checkWord(word) {
-        let parts = word.split("-");
-        for (const part of parts) {
-            if (!this.#dictionary.includes(this.removePunctuation(part)) &&
-                !this.#dictionary.includes(this.removePunctuation(part.toLowerCase()))) { return false };
+        if (word[0] !== word[0].toUpperCase()) {
+            let parts = word.split("-");
+            for (const part of parts) {
+                if (!this.#dictionary.includes(this.removePunctuation(part))) { return false };
+            }
         }
         return true;
     }

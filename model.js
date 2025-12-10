@@ -15,8 +15,8 @@ export default class Model {
         this.#dictionary = words;
     }
 
-    addToDict(words) {
-        words.forEach(word => { this.#dictionary.push(word); });
+    addToDict(word) {
+        this.#dictionary.push(word);
     }
 
     removePunctuation(word) {

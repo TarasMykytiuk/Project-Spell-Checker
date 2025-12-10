@@ -22,6 +22,9 @@ export default class Controller {
     handleAddToDictSubmit() {
         const text = this.view.readAddDict();
         const words = text.split(" ");
-        this.model.addToDict(words);
+        words.forEach(word => {
+            this.model.addToDict(word);
+        });
+
     }
 }

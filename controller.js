@@ -7,24 +7,19 @@ export default class Controller {
     init() {
         this.view.bindTextSubmit(() => this.handleTextSubmit());
         this.view.textAreaChange();
-        this.view.bindAddToDictSubmit(() => this.handleAddToDictSubmit());
     }
 
     handleTextSubmit() {
         const text = this.view.readTextArea();
-        const words = text.split(" ");
+        const words = text.trim().split(" ");
         const wrongWords = this.model.getWrongWords(words);
         const highlightedText = this.model.markWrongWords(words, wrongWords);
         this.view.highlightWords(highlightedText);
         this.view.displayResult(wrongWords);
+        this.view.bindAddWordToDict((word) => this.handleAddWordToDict(word));
     }
 
-    handleAddToDictSubmit() {
-        const text = this.view.readAddDict();
-        const words = text.split(" ");
-        words.forEach(word => {
-            this.model.addToDict(word);
-        });
-
+    handleAddWordToDict(word) {
+        this.model.addToDict(word);
     }
 }

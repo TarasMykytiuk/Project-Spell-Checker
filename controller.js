@@ -16,10 +16,10 @@ export default class Controller {
         const highlightedText = this.model.markWrongWords(words, wrongWords);
         this.view.highlightWords(highlightedText);
         this.view.displayResult(wrongWords);
-        this.view.bindAddWordToDict((word) => this.handleAddWordToDict(word));
+        this.view.bindAddWordsToDict((word) => this.handleAddWordsToDict(word));
     }
 
-    handleAddWordToDict(word) {
+    handleAddWordsToDict(word) {
         this.model.addToDict(word);
     }
 }

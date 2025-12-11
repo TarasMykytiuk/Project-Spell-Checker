@@ -18,9 +18,7 @@ export default class View {
     bindTextSubmit(handler) {
         this.#elements.submitBtn.addEventListener("click", (event) => {
             event.preventDefault();
-            this.#elements.resultMessage.style.visibility = "hidden";
-            this.#elements.resultHeader.textContent = '';
-            this.#elements.wrongWordsDom.textContent = '';
+            this.hideResultMessage();
             handler();
         });
     }
@@ -29,32 +27,6 @@ export default class View {
         this.#elements.textInput.addEventListener("input", () => {
             this.#elements.highlights.innerHTML = '';
         })
-    }
-
-    bindAddWordToDict(handler) {
-        const buttons = document.getElementsByClassName("add_wrong_word_button");
-        const buttonsArray = [...buttons];
-        buttonsArray.forEach(button => {
-            button.addEventListener("click", () => {
-                this.addWordButtonOnClick(button, handler);
-                if (buttons.length == 0) {
-                    this.hideResultMessage();
-                }
-            })
-        });
-        this.#elements.addAllBtn.addEventListener("click", () => {
-            buttonsArray.forEach(button => {
-                this.addWordButtonOnClick(button, handler);
-            });
-            this.hideResultMessage();
-        });
-    }
-
-    addWordButtonOnClick(button, handler) {
-        const div = button.parentElement;
-        const word = button.id;
-        handler(word);
-        div.remove();
     }
 
     readTextArea() {
@@ -85,6 +57,34 @@ export default class View {
         this.#elements.resultHeader.textContent = '';
         this.#elements.wrongWordsDom.textContent = '';
         this.#elements.addAllBtn.style.visibility = "hidden";
+    }
+
+    bindAddWordsToDict(handler) {
+        const buttonsArray = [...document.getElementsByClassName("add_wrong_word_button")];
+        buttonsArray.forEach(button => {
+            button.addEventListener("click", () => {
+                this.addOneWord(button, handler);
+                if (buttonsArray.length == 0) {
+                    this.hideResultMessage();
+                }
+            })
+        });
+        this.addAllWordsEvent(handler, buttonsArray);
+    }
+
+    addOneWord(button, handler) {
+        const word = button.id;
+        handler(word);
+        button.parentElement.remove();
+    }
+
+    addAllWordsEvent(handler, buttonsArray) {
+        this.#elements.addAllBtn.addEventListener("click", () => {
+            buttonsArray.forEach(button => {
+                this.addOneWord(button, handler);
+            });
+            this.hideResultMessage();
+        });
     }
 
     createWrongWordCard(word) {

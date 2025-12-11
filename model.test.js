@@ -53,6 +53,6 @@ test("wrong word added to dict passes check", () => {
     const model = new Model();
     const wrongWord = "wrong";
     assert.deepEqual(model.checkWord(wrongWord), false);
-    model.addToDict([wrongWord]);
+    model.addToDict(wrongWord);
     assert.deepEqual(model.checkWord(wrongWord), true);
 });
